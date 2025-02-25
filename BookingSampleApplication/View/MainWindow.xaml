@@ -1,0 +1,64 @@
+﻿<Window x:Class="BookingSampleApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UC="clr-namespace:BookingSampleApplication"
+        Title="MainWindow"  
+        Height="800" Width="1000" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" WindowStyle="None" WindowState="Maximized">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Styles\Resources.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>            
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Background="#3394B5">     
+            <TextBlock Text="BookmySeat!" FontSize="25" FontWeight="Bold" Foreground="White" Margin="20,20,5,20"></TextBlock>
+            <Button Command="{Binding CloseCommand}" Grid.Column="1" HorizontalAlignment="Right" Cursor="Hand" VerticalAlignment="Top">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Images/close.png" Height="35" Width="35" />
+                    </ControlTemplate>
+                </Button.Template>                
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Background="LightBlue" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                <StackPanel Orientation="Horizontal" Height="40" Background="#3394B5" Margin="3" Cursor="Hand">
+                    <Image Source="/Images/book.png"></Image>
+                    <TextBlock Text="Booking" Foreground="White" FontSize="15" VerticalAlignment="Center" Margin="3"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="40" Background="LightBlue"  Margin="3" Cursor="Hand">
+                    <Image Source="/Images/info.png"></Image>
+                    <TextBlock Text="About" Foreground="White" FontSize="15" VerticalAlignment="Center" Margin="3"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="40" Background="LightBlue"  Margin="3" Cursor="Hand">
+                    <Image Source="/Images/logoff.png"></Image>
+                    <TextBlock Text="LogOff" Foreground="White" FontSize="15" VerticalAlignment="Center" Margin="3"></TextBlock>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Stretch" Background="LightBlue">
+                </StackPanel>
+            </StackPanel>
+            
+            <UC:LoginControl Background="White" x:Name="SimpleLoginControl" Visibility="Visible" LoginClick="LoginControl_LoginClick" Grid.ColumnSpan="2" ></UC:LoginControl>
+            <UC:Booking x:Name="MainControl" Visibility="Collapsed" Grid.Column="1" ></UC:Booking>
+        </Grid>
+    </Grid>
+</Window>

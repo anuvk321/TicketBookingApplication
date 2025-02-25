@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="BookingSampleApplication.Booking"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="950"
+             xmlns:UC="clr-namespace:BookingSampleApplication"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Styles\Resources.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="#a4c4ac">
+        <Grid Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Venue"  Style="{StaticResource TextBlockBookingStyle}" Grid.Row="1" Grid.Column="1" ></TextBlock>
+                <ComboBox Grid.Column="3" Style="{StaticResource ComboBoxStyle}" Grid.Row="1" IsEnabled="False" SelectedIndex="0">
+                    <ComboBox.Items>
+                        <ComboBoxItem Content="Auditorium 1"></ComboBoxItem>
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <TextBlock Text="Date"  Style="{StaticResource TextBlockBookingStyle}"  Grid.Row="2" Grid.Column="1"></TextBlock>
+                <DatePicker Grid.Column="3" Style="{StaticResource DatePickerBookingStyle}" Grid.Row="2" SelectedDate="{Binding BookedDateFor}" DisplayDateStart="{Binding DisplayStartDate, Mode=OneTime}" DisplayDateEnd="{Binding DisplayEndDate, Mode=OneTime}"></DatePicker>
+
+                <!--<TextBlock Text="Time" Grid.Row="3" Grid.Column="1"></TextBlock>
+                <ComboBox Grid.Row="3" Grid.Column="3" SelectedValue="{Binding SelectedTime}" Margin="0,1,0,29" Grid.RowSpan="2">
+                    <ComboBox.Items>
+                        <ComboBoxItem Content="5:30 PM"></ComboBoxItem>
+                        <ComboBoxItem Content="7:30 PM"></ComboBoxItem>
+                    </ComboBox.Items>
+                </ComboBox>-->
+
+                <TextBlock Text="Customer Name" Style="{StaticResource TextBlockBookingStyle}" Grid.Row="3" Grid.Column="1"></TextBlock>
+                <TextBox Style="{StaticResource TextBoxBookingStyle}" Grid.Row="3" Grid.Column="3" Text="{Binding CustomerName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                <TextBlock Text="Phone Number" Style="{StaticResource TextBlockBookingStyle}" Grid.Row="4" Grid.Column="1"></TextBlock>
+                <TextBox Grid.Row="4" Style="{StaticResource TextBoxBookingStyle}" Grid.Column="3" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                <TextBlock Text="No of Seats" Style="{StaticResource TextBlockBookingStyle}" Grid.Row="5" Grid.Column="1"></TextBlock>
+                <ComboBox Grid.Row="5" Grid.Column="3" Style="{StaticResource ComboBoxStyle}" ItemsSource="{Binding NumberOfSeatCol}" SelectedItem="{Binding SelectedNoOfSeats, UpdateSourceTrigger=PropertyChanged}">
+                </ComboBox>
+
+                <TextBlock Text="Person with Disability?" Width="170" Style="{StaticResource TextBlockBookingStyle}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"></TextBlock>
+                <CheckBox Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" IsChecked="{Binding IsDisabled}" IsEnabled="{Binding IsCheckboxEnabled}"></CheckBox>
+
+                <Button Content="Book Tickets" Style="{StaticResource BaseButtonStyle}" Grid.Row="7" Grid.Column="3"
+                        IsEnabled="{Binding IsBookingButtonEnabled}" Command="{Binding BookCommand}"></Button>
+                
+            </Grid>
+            <!--<GridSplitter Grid.Column="1"
+              ResizeDirection="Columns"
+              ResizeBehavior="PreviousAndNext"
+              HorizontalAlignment="Stretch"/>-->
+            <!-- Seating -->
+            <UC:Seating Grid.Column="1" Grid.Row="0" Margin="0" HorizontalAlignment="Center" ></UC:Seating>
+            <Grid Margin="10" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
+                <Border Margin="20" Background="#3b6846">
+                    <TextBlock  Text="{Binding Result}" FontSize="25" Foreground="White"></TextBlock>
+                </Border>
+            </Grid>
+           
+           
+        </Grid>
+        
+    </Grid>
+</UserControl>
